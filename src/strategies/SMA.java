@@ -2,7 +2,9 @@ package strategies;
 
 import java.util.List;
 
-public class SMA extends StrategyManager {
+import finance.Action;
+
+public class SMA extends StrategyMaster {
 	static double slowPastSma;
 	static double fastPastSma;
 	static double slowSmaValue;

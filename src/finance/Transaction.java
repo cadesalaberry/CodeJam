@@ -1,8 +1,8 @@
 package finance;
+
 import manager.Manager;
 import strategies.Strategy;
-import strategies.StrategyManager;
-
+import strategies.StrategyMaster;
 
 public class Transaction {
 
@@ -10,47 +10,52 @@ public class Transaction {
 	Action action;
 	Price price;
 	Manager manager;
-	StrategyManager strategyManager;
+	StrategyMaster strategyManager;
 	Strategy strategy;
-	
-	
-	public Transaction(int time, Action action, Price price, Manager manager, StrategyManager strategyManager){
-		
+
+	public Transaction(int time, Action action, Price price, Manager manager,
+			StrategyMaster strategyManager) {
+
 		this.time = time;
 		this.action = action;
 		this.price = price;
 		this.manager = manager;
 		this.strategyManager = strategyManager;
-		
+
 	}
-	
-public Transaction(int time, Action action, Price price, Manager manager, Strategy strategy){
-		
+
+	public Transaction(int time, Action action, Price price, Manager manager,
+			Strategy strategy) {
+
 		this.time = time;
 		this.action = action;
 		this.price = price;
 		this.manager = manager;
 		this.strategy = strategy;
-		
+
 	}
-	
-	public int getTime(){
+
+	public int getTime() {
 		return time;
 	}
-	
-	public Action getAction(){
+
+	public Action getAction() {
 		return action;
 	}
-	
-	public Price getPrice(){
+
+	public Price getPrice() {
 		return price;
 	}
-	
-	public Manager getManager(){
+
+	public Manager getManager() {
 		return manager;
 	}
+
+	public Strategy getStrategy() {
+		return this.strategy;
+	}
 	
-	public StrategyManager getStrategy(){
+	public StrategyMaster getStrategyManager() {
 		return this.strategyManager;
 	}
 }

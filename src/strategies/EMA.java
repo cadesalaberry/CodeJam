@@ -2,7 +2,9 @@ package strategies;
 
 import java.util.List;
 
-public class EMA extends StrategyManager {
+import finance.Action;
+
+public class EMA extends StrategyMaster {
 	static double slowPastEma;
 	static double fastPastEma;
 	static double slowEmaValue;
@@ -34,7 +36,7 @@ public class EMA extends StrategyManager {
 	}
 
 	public static Action getAction(){
-		return Action.NOTHING;
+		return Action.DO_NOTHING;
 	}
 
 

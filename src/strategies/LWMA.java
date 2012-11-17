@@ -2,7 +2,9 @@ package strategies;
 
 import java.util.List;
 
-public final class LWMA extends StrategyManager {
+import finance.Action;
+
+public final class LWMA extends StrategyMaster {
 
 	public static double getSlowRunningAverage(List<Double> list) {
 		double numerator = 0,denominator = 0;

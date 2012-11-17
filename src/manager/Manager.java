@@ -1,53 +1,48 @@
 package manager;
 
 import finance.Action;
+import finance.Price;
 import finance.Transaction;
 import strategies.Strategy;
-import strategies.StrategyManager;
+import strategies.StrategyMaster;
+import scheduling.ScheduleManager;
+import scheduling.Timer;
 
-public class Manager {
-boolean working = false;
-final int maxSecs=16200;
-int secsWorked;
-String name;
-Strategy[] strategies;    
+public class Manager extends ScheduleManager {
+	boolean working = false;
+	final int maxSecs = 16200;
+	int secsWorked;
+	int managerNum;
+	String name;
+	Strategy[] strategies;
 
-public Manager(String name, Strategy one, Strategy two) {
-	this.name = name;
-	strategies = new Strategy[]{one, two}; 
-}
+	public Manager(String name, Strategy one, Strategy two, int num) {
+		super(num);
+		this.name = name;
+		strategies = new Strategy[] { one, two };
+		managerNum = num;
+	}
 
-public Manager(String name, Strategy one) {
-	this.name = name;
-	strategies = new Strategy[]{one};
-}
+	public Transaction act() {
 
-public Transaction tryBuyOrSell() {
-	if(working) {
-		for(int i=0;i<strategies.length;i++) {
-			Action temp = StrategyManager.getAction(strategies[i]);
-			
-			if(temp == Action.BUY) {
-				return buy(strategies[i]);
-			}
-			else if(temp == Action.SELL) {
-				return sell(strategies[i]);
+		Transaction trans;
+
+		if (this.isWorking()) {
+			for (Strategy strategy : strategies) {
+
+				Action act = StrategyMaster.getAction(strategy);
+
+				this.getConnection().sendAction(act);
+
+				trans = new Transaction(Timer.getTime(), Action.BUY,
+						executedPrice, this, strategy);
 			}
 		}
+		return trans;
 	}
-}
 
-public Transaction buy(Strategy strategy) {
-	double executedPrice;
-	executedPrice = ServerConnection.executeBuy();
-	Transaction trans = new Transaction(time,Action.BUY,executedPrice,this.managerName,strategy);
-	return trans;
-}
-
-public Transaction sell(Strategy strategy) {
-	double executedPrice = ServerConnection.executeSell();
-	Transaction trans = new Transaction(Timer.getTime(), Action.SELL, executedPrice, managerName, strategy);
-	return trans;
-}
+	public String toString() {
+		return this.name;
+	}
 
 }

@@ -2,7 +2,9 @@ package strategies;
 
 import java.util.List;
 
-public class TMA extends StrategyManager {
+import finance.Action;
+
+public class TMA extends StrategyMaster {
 	static double slowTmaValue;
 	static double fastTmaValue;
 
