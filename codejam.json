@@ -1,0 +1,27 @@
+{
+  "team" : "Nitrogylcerin",
+  "destination" : "mcgillcodejam2012@gmail.com",
+  "transactions" : [
+    {
+      "time" : "8004",
+      "type" : "BUY",
+      "price" : "120.0",
+      "manager" : "Manager1",
+      "strategy" : "EMA"
+    },
+    {
+      "time" : "9589",
+      "type" : "SELL",
+      "price" : "122.0",
+      "manager" : "Manager2",
+      "strategy" : "LWMA"
+    },
+    {
+      "time" : "16542",
+      "type" : "BUY",
+      "price" : "118.0",
+      "manager" : "Manager1",
+      "strategy" : "TMA"
+    }
+  ]
+}
