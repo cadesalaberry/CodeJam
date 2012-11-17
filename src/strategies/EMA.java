@@ -1,35 +1,45 @@
 package strategies;
 
-import finance.Action;
+import java.util.List;
 
 public class EMA extends StrategyManager {
 	static double slowPastEma;
 	static double fastPastEma;
 	static double slowEmaValue;
 	static double fastEmaValue;
-	final static double slowAlpha = 2/6;
-	final static double fastAlpha = 2/21;
+	final static double SLOW_ALPHA = (2.0/21.0);
+	final static double FAST_ALPHA= (1.0/3.0);
 
+	
 	public static double getSlowRunningAverage(double latestPrice) {
 		if (slowPastEma == 0.0) {
 			slowPastEma = latestPrice;
+		return slowPastEma;
 		}
-		slowEmaValue= slowPastEma + (slowAlpha*(latestPrice - slowPastEma));
+		slowEmaValue= slowPastEma + (SLOW_ALPHA*(latestPrice - slowPastEma));
+		
 		slowPastEma = slowEmaValue;
-		return slowEmaValue;
+		return round(slowEmaValue);
 	}
 
 	public static double getFastRunningAverage(double latestPrice) {
 		if (fastPastEma == 0.0) {
 			fastPastEma = latestPrice;
+		return fastPastEma;
 		}
-		fastEmaValue= fastPastEma + (fastAlpha*(latestPrice - fastPastEma));
+		fastEmaValue= fastPastEma + (FAST_ALPHA*(latestPrice - fastPastEma));
+		
 		fastPastEma = fastEmaValue;
-		return fastEmaValue;
+		return round(fastEmaValue);
 	}
 
-	public Action getAction(){
+	public static Action getAction(){
 		return Action.NOTHING;
 	}
 
+
+	public static Action update(List<Double> lastPrices) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

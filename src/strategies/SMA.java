@@ -2,8 +2,6 @@ package strategies;
 
 import java.util.List;
 
-import finance.Action;
-
 public class SMA extends StrategyManager {
 	static double slowPastSma;
 	static double fastPastSma;
@@ -38,23 +36,14 @@ public class SMA extends StrategyManager {
 		return round(fastSmaValue);
 	}
 
-	private static double getAverage(List<Double> list){
-		double sum=0.0;
-		for(int i = 0; i < list.size(); i++){
-			sum +=list.get(i);
-		}
-		return round(sum/list.size());
 
-	}
-
-	public static double round(double num) {
-		double result = num * 1000;
-		result = Math.round(result);
-		result = result / 1000;
-		return result;
-		}
 	
 	public static Action update(List<Double> lastPrices) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static Action getAction() {
 		// TODO Auto-generated method stub
 		return null;
 	}

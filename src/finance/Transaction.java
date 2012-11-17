@@ -1,5 +1,6 @@
 package finance;
 import manager.Manager;
+import strategies.Strategy;
 import strategies.StrategyManager;
 
 
@@ -9,10 +10,21 @@ public class Transaction {
 	Action action;
 	Price price;
 	Manager manager;
-	StrategyManager strategy;
+	StrategyManager strategyManager;
+	Strategy strategy;
 	
 	
-	public Transaction(int time, Action action, Price price, Manager manager, StrategyManager strategy){
+	public Transaction(int time, Action action, Price price, Manager manager, StrategyManager strategyManager){
+		
+		this.time = time;
+		this.action = action;
+		this.price = price;
+		this.manager = manager;
+		this.strategyManager = strategyManager;
+		
+	}
+	
+public Transaction(int time, Action action, Price price, Manager manager, Strategy strategy){
 		
 		this.time = time;
 		this.action = action;
@@ -39,6 +51,6 @@ public class Transaction {
 	}
 	
 	public StrategyManager getStrategy(){
-		return this.strategy;
+		return this.strategyManager;
 	}
 }

@@ -1,22 +1,12 @@
 package strategies;
 
-import java.util.ArrayList;
+
 import java.util.LinkedList;
 import java.util.List;
-
-import finance.Action;
 
 public class StrategyManager {
 
 	private LinkedList<Double> priceHistory;
-
-	public static int getSlowRunningAverage() {
-		return -1;
-	}
-
-	public static int getFastRunnindAverage() {
-		return -1;
-	}
 
 	/**
 	 * Gets a list of the last 'm' prices.
@@ -31,7 +21,6 @@ public class StrategyManager {
 
 	/**
 	 * Adds a price to the Price History.
-	 * The most recent one is at index 0.
 	 * 
 	 * @param price
 	 */
@@ -42,8 +31,8 @@ public class StrategyManager {
 		if (priceHistory.size() > 50) {
 			priceHistory.removeFirst();
 		}
-		
 		List<Double> latest20 = getLastPrices(20);
+		
 		SMA.update(latest20);
 		LWMA.update(latest20);
 		EMA.update(latest20);
@@ -69,4 +58,19 @@ public class StrategyManager {
 		}
 		return null;
 	}
+	public static double getAverage(List<Double> list){
+		double sum=0.0;
+		for(int i = 0; i < list.size(); i++){
+			sum +=list.get(i);
+		}
+		return round(sum/list.size());
+
+	}
+
+	public static double round(double num) {
+		double result = num * 1000;
+		result = Math.round(result);
+		result = result / 1000;
+		return result;
+		}
 }
