@@ -6,12 +6,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import strategies.*;
-
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
-import java.util.List;
 
 public class SMATest {
 
@@ -77,9 +72,9 @@ public class SMATest {
 			if (listToPass.size() > 5) {
 				listToPass.removeFirst();
 			}
-			
-			System.out.println(listToPass);
-			
+
+			// System.out.println(listToPass);
+
 			actual = SMA.getFastRunningAverage(listToPass);
 
 			System.out.print("Time\t: " + time);
