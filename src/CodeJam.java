@@ -1,3 +1,5 @@
+import server.Connection;
+
 
 public class CodeJam {
 
@@ -5,7 +7,12 @@ public class CodeJam {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		// Setup connection.
+		Connection connection = new Connection();
+		
+		
+		
 
 	}
 

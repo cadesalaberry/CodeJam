@@ -5,7 +5,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Generator {
-
+	
+	
+	/**
+	 * This is a stub to read a file, NOT WRITE.
+	 * @param filename
+	 * @return
+	 */
 	public static ArrayList<String> readWordsFromFile(String filename) {
 
 		ArrayList<String> words = new ArrayList<String>();
