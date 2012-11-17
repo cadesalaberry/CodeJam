@@ -1,5 +1,5 @@
 package finance;
-import strategies.Action;
+import manager.Manager;
 import strategies.StrategyManager;
 
 

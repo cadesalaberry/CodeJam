@@ -1,5 +1,7 @@
 package strategies;
 
+import finance.Action;
+
 public class EMA extends StrategyManager {
 	static double slowPastEma;
 	static double fastPastEma;
@@ -17,7 +19,7 @@ public class EMA extends StrategyManager {
 		return slowEmaValue;
 	}
 
-	public static double getFastRunnindAverage(double latestPrice) {
+	public static double getFastRunningAverage(double latestPrice) {
 		if (fastPastEma == 0.0) {
 			fastPastEma = latestPrice;
 		}

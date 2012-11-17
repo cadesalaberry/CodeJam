@@ -2,6 +2,8 @@ package strategies;
 
 import java.util.List;
 
+import finance.Action;
+
 public class TMA extends StrategyManager {
 
 	public static int getSlowRunningAverage() {
@@ -18,4 +20,6 @@ public class TMA extends StrategyManager {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 }
+

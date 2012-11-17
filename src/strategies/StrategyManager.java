@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import finance.Action;
+
 public class StrategyManager {
 
 	private LinkedList<Double> priceHistory;
@@ -29,6 +31,7 @@ public class StrategyManager {
 
 	/**
 	 * Adds a price to the Price History.
+	 * The most recent one is at index 0.
 	 * 
 	 * @param price
 	 */
@@ -40,10 +43,11 @@ public class StrategyManager {
 			priceHistory.removeFirst();
 		}
 		
-		SMA.update(getLastPrices(20));
-		LWMA.update(getLastPrices(20));
-		EMA.update(getLastPrices(20));
-		TMA.update(getLastPrices(20));
+		List<Double> latest20 = getLastPrices(20);
+		SMA.update(latest20);
+		LWMA.update(latest20);
+		EMA.update(latest20);
+		TMA.update(latest20);
 		
 	}
 

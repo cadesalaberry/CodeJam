@@ -1,6 +1,8 @@
 package manager;
 
-import strategies.Action;
+import finance.Action;
+import finance.Transaction;
+import strategies.Strategy;
 import strategies.StrategyManager;
 
 public class Manager {
