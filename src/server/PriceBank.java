@@ -7,24 +7,31 @@ import scheduling.Timer;
 import finance.Price;
 
 public class PriceBank {
-	
+
 	private static LinkedList<Price> safe;
 	
-	
-	public PriceBank(){
+	/**
+	 * Creates a new bank initialasing a safe.
+	 */
+	public PriceBank() {
 		safe = new LinkedList<>();
 	}
-	
+
 	/**
-	 * Adds a Price to the 
+	 * Adds a Price to the bank.
+	 *
 	 * @param in
 	 */
-	public static void deposit(double in){
-		
+	public static void deposit(double in) {
+
 		safe.addLast(new Price(in, Timer.getTime()));
 	}
 	
-	public static Price withdraw(){
+	/**
+	 * Removes first price of the list.
+	 * @return
+	 */
+	public static Price withdraw() {
 		return safe.removeFirst();
 	}
 }

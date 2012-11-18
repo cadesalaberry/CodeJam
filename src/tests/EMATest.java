@@ -2,6 +2,8 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.util.LinkedList;
+
 import org.junit.Test;
 
 import strategies.EMA;
@@ -24,16 +26,16 @@ public class EMATest {
 		double[] correctValues = { 61.590, 61.576, 61.551, 61.563, 61.597,
 				61.693, 61.806, 61.926, 62.056, 62.176, 62.279, 62.359, 62.348,
 				62.333, 62.386 };
-
+		LinkedList<Double> listToPass = new LinkedList<Double>();
 		double actual;
 
 		System.out.println("=======SLOW=======");
 
 		// Parse the sampleData corresponding to time.
 		for (int time = 0; time < samplePrice.length; time++) {
-
+			listToPass.add(samplePrice[time]);
 			// Gets the value from our algorithm.
-			actual = EMA.getSlowRunningAverage(samplePrice[time]);
+			actual = EMA.getSlowRunningAverage(listToPass);
 
 			System.out.print("Time\t: " + time);
 			System.out.print("\tDesired: " + correctValues[time]);
@@ -57,14 +59,14 @@ public class EMATest {
 				62.598, 62.695 };
 
 		double actual;
-
+		LinkedList<Double> listToPass = new LinkedList<Double>();
 		System.out.println("=======FAST=======");
 
 		// Parse the sampleData corresponding to time.
 		for (int time = 0; time < samplePrice.length; time++) {
-
+			listToPass.add(samplePrice[time]);
 			// Gets the value from our algorithm.
-			actual = EMA.getFastRunningAverage(samplePrice[time]);
+			actual = EMA.getFastRunningAverage(listToPass);
 
 			System.out.print("Time\t: " + time);
 			System.out.print("\tDesired: " + correctValues[time]);
@@ -73,7 +75,5 @@ public class EMATest {
 			assertTrue(correctValues[time] == actual);
 		}
 	}
-
-
 
 }

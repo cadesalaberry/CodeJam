@@ -37,7 +37,7 @@ public class LWMATest {
 				listToPass.removeFirst();
 			}
 
-			System.out.println(listToPass);
+			
 
 			actual = LWMA.getFastRunningAverage(listToPass);
 

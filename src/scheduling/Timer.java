@@ -2,7 +2,7 @@ package scheduling;
 
 public class Timer {
 
-	static int timer = 1;
+	static int timer = 0;
 
 	/**
 	 * Returns the time.

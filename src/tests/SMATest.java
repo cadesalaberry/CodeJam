@@ -56,7 +56,7 @@ public class SMATest {
 	}
 
 	@Test
-	public void testGetFastRunnindAverageList() {
+	public void testGetFastRunningAverageList() {
 
 		double actual;
 
@@ -83,11 +83,6 @@ public class SMATest {
 
 			assertTrue(correctValues[time] == actual);
 		}
-	}
-
-	@Test
-	public void testGetAction() {
-		fail("Not yet implemented");
 	}
 
 }

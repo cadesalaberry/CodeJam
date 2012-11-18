@@ -2,8 +2,10 @@ package server;
 
 import java.io.*;
 import java.net.*;
-import java.util.LinkedList;
 import java.util.Scanner;
+
+import scheduling.Timer;
+import strategies.StrategyMaster;
 
 import finance.Action;
 
@@ -25,50 +27,78 @@ public class Connection {
 		this("localhost");
 	}
 
+	/**
+	 * Connects to and receive from server.
+	 * 
+	 * @return
+	 */
 	public boolean fullRoutine() {
 
 		return connect() && receive();
 	}
 
+	/**
+	 * Establishes the connection to the server. Starts receiving the data.
+	 * 
+	 * @return
+	 */
 	public static boolean connect() {
 
-		// Open socket at server's port
 		try {
+			// Open socket at server's port
 			echoSocket = new Socket(machineName, 3000);
 			out = new PrintWriter(echoSocket.getOutputStream(), true);
 			scanner = new Scanner(echoSocket.getInputStream());
 			scanner.useDelimiter("\\|");
 
-		} catch (UnknownHostException e) {
-			System.err.println("Don't know about host: " + machineName + ".");
-			return false;
 		} catch (IOException e) {
-			System.err.println("Couldn't get I/O for " + "the connection to: "
-					+ machineName + ".");
+			System.err
+					.println("The exchange server on "
+							+ machineName
+							+ "cannot be found. Please check your network configuration and run the program again.");
 			return false;
 		}
-
 		return true;
 
 	}
 
+	/**
+	 * Returns true if the connection is complete.
+	 * 
+	 * @return
+	 */
 	public boolean receive() {
 
 		// Send signal to server to start sending values
 		sendAction(Action.START);
+		String received = scanner.next();
 
-		// Starts stacking up data.
-		while (scanner.hasNextDouble()) {
-			PriceBank.deposit(scanner.nextDouble());
-			// System.out.println(dump.peekLast());
-		}
-		if (scanner.next().equals("C")) {
+		// Increments time before to make the timer start at 1.
+		Timer.incrementTime();
 
+		System.out.println("time:" + Timer.getTime() + "\t" + received);
+
+		if (received.equals("C") || !scanner.hasNext()) {
+			System.out.println("Connection closed.");
 			return close();
+		} else if (received.equals("E")) {
+			System.out.println("An Error has been reported from the server.");
 		}
-		return false;
+
+		// Starts communicating the data.
+		{
+			double newPrice = Double.parseDouble(received);
+			PriceBank.deposit(newPrice);
+			StrategyMaster.addPrice(newPrice);
+			return false;
+		}
 	}
 
+	/**
+	 * Closes connection with the server.
+	 * 
+	 * @return
+	 */
 	public static boolean close() {
 		try {
 			out.close();
@@ -80,7 +110,12 @@ public class Connection {
 		return true;
 	}
 
-	public void sendAction(Action action) {
+	/**
+	 * Sends a specific action to be performed
+	 * 
+	 * @param action
+	 */
+	public static void sendAction(Action action) {
 
 		switch (action) {
 		case START: {

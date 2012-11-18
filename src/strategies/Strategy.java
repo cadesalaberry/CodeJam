@@ -1,3 +1,3 @@
 package strategies;
 
-public enum Strategy {SMA,LWMA,EMA,TMA, NOTHING}
+public enum Strategy {SMA,LWMA,EMA,TMA, NONE}

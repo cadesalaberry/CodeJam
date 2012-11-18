@@ -1,15 +1,33 @@
 package server;
 
-public class ConnectionManager {
+import strategies.Strategy;
+import manager.StrategyManager;
+
+public class ConnectionManager extends StrategyManager {
 
 	Connection connection;
-	
+
+	public ConnectionManager(Strategy one, Strategy two) {
+		super(one, two);
+		initiateConnection();
+	}
+
 	public ConnectionManager() {
-		connection = new Connection();
+		super();
+		initiateConnection();
 	}
 	
-	public Connection getConnection(){
+	/**
+	 * Returns the connection initiated by the connection manager.
+	 * @return
+	 */
+	public Connection getConnection() {
 		return this.connection;
 	}
-	
+	/**
+	 * Initiates a connection. Only used locally.
+	 */
+	private void initiateConnection() {
+		connection = new Connection();
+	}
 }
