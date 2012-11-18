@@ -53,9 +53,9 @@ public class Connection {
 
 		} catch (IOException e) {
 			System.err
-					.println("The exchange server on "
+					.println("The exchange server on \'"
 							+ machineName
-							+ "cannot be found. Please check your network configuration and run the program again.");
+							+ "\' cannot be found. Please check your network configuration and run the program again.");
 			return false;
 		}
 		return true;
